@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get in Touch | Clarity with Chinmay</title>
+<meta name="color-scheme" content="light only">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+    :root{
+      --surface: rgba(255,255,255,.78);
+      --surface-strong: rgba(255,255,255,.92);
+      --text:#0e1726;
+      --muted:#5e6b7a;
+      --line:rgba(142,180,223,.24);
+      --primary:#2f7cf6;
+      --primary2:#67a8ff;
+      --navy:#0f1e33;
+      --shadow:0 20px 60px rgba(31,61,108,.12);
+      --shadow-soft:0 12px 36px rgba(31,61,108,.08);
+      --max:1180px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{
+      scroll-behavior:smooth;
+      background:
+        radial-gradient(circle at top left,rgba(135,190,255,.22),transparent 28%),
+        radial-gradient(circle at top right,rgba(113,168,255,.20),transparent 24%),
+        linear-gradient(180deg,#fbfdff 0%,#f4f9ff 100%);
+    }
+    body{
+      font-family:Inter,Arial,sans-serif;
+      color:var(--text);
+      background:transparent;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+    p{color:var(--muted);line-height:1.8}
+    strong{color:var(--navy)}
+    .container{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+    .glass{
+      background:var(--surface);
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow-soft);
+    }
+    .site-nav{position:sticky;top:0;z-index:1000;padding-top:14px}
+    .nav-shell{
+      width:min(var(--max),calc(100% - 24px));
+      margin:0 auto;border-radius:20px;background:rgba(255,255,255,.72);
+      backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+      border:1px solid rgba(133,171,216,.22);
+      box-shadow:0 18px 50px rgba(36,72,124,.08);
+      padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:18px;position:relative;
+    }
+    .brand{display:flex;align-items:center;gap:12px;min-width:0;z-index:3}
+    .brand-mark{
+      width:42px;height:42px;border-radius:13px;display:flex;align-items:center;justify-content:center;
+      color:#fff;font-weight:900;font-size:.95rem;letter-spacing:-.04em;
+      background:linear-gradient(135deg,#2f7cf6 0%,#71b2ff 100%);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.24),0 10px 26px rgba(47,124,246,.24);flex-shrink:0;
+    }
+    .brand-title{font-size:1rem;font-weight:800;color:var(--navy);line-height:1.1}
+    .brand-sub{font-size:.82rem;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .nav-desktop{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:0 18px;border-radius:13px;
+      font-size:.9rem;font-weight:700;border:1px solid rgba(119,159,207,.28);background:rgba(255,255,255,.72);
+      transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease, color .2s ease;white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn.primary{color:#fff;background:linear-gradient(135deg,var(--primary) 0%,var(--primary2) 100%);border-color:rgba(71,143,246,.35);box-shadow:0 14px 34px rgba(47,124,246,.24)}
+    .btn.active{color:var(--primary);background:rgba(47,124,246,.08);border-color:rgba(47,124,246,.24)}
+    .menu-toggle{
+      display:none;width:46px;height:46px;border-radius:14px;align-items:center;justify-content:center;border:1px solid rgba(119,159,207,.28);
+      background:rgba(255,255,255,.72);color:var(--navy);cursor:pointer;transition:transform .25s ease, background .25s ease, border-color .25s ease;
+      z-index:3;-webkit-tap-highlight-color: transparent;user-select:none;
+    }
+    .menu-toggle .bars{width:18px;height:14px;position:relative;display:block}
+    .menu-toggle .bars span{position:absolute;left:0;width:100%;height:2px;border-radius:999px;background:var(--navy);transition:transform .28s ease, opacity .2s ease, top .28s ease}
+    .menu-toggle .bars span:nth-child(1){top:0}.menu-toggle .bars span:nth-child(2){top:6px}.menu-toggle .bars span:nth-child(3){top:12px}
+    .menu-toggle.active .bars span:nth-child(1){top:6px;transform:rotate(45deg)}
+    .menu-toggle.active .bars span:nth-child(2){opacity:0}
+    .menu-toggle.active .bars span:nth-child(3){top:6px;transform:rotate(-45deg)}
+    .mobile-panel{
+      display:none;position:absolute;left:12px;right:12px;top:calc(100% + 10px);border-radius:22px;background:rgba(255,255,255,.78);
+      backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(133,171,216,.22);box-shadow:0 18px 50px rgba(36,72,124,.12);
+      padding:12px;transform-origin:top center;opacity:0;transform:translateY(-10px) scale(.985);pointer-events:none;transition:opacity .26s ease, transform .30s cubic-bezier(.2,.8,.2,1);
+    }
+    .mobile-panel.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+    .mobile-links{display:grid;gap:10px}
+    .mobile-links .btn{width:100%;min-height:52px;justify-content:center;font-size:1rem;border-radius:16px}
+    .menu-backdrop{
+      position:fixed;inset:0;background:rgba(15,30,51,.16);backdrop-filter: blur(3px);-webkit-backdrop-filter: blur(3px);
+      opacity:0;pointer-events:none;transition:opacity .24s ease;z-index:900;
+    }
+    .menu-backdrop.show{opacity:1;pointer-events:auto}
+    .section{padding:88px 0}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+    .eyebrow:before{content:"";width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary2));box-shadow:0 0 0 6px rgba(47,124,246,.10)}
+    h1,h2,h3{letter-spacing:-.04em;line-height:1.08;color:var(--navy)}
+    .section-title{max-width:780px;margin-bottom:28px}
+    .section-title h2{font-size:clamp(2.1rem,3.3vw,3.5rem);margin-bottom:16px}
+    .footer-card{
+      padding:34px;display:flex;align-items:center;justify-content:space-between;gap:18px;
+      background:rgba(255,255,255,.68);border:1px solid rgba(146,186,229,.18);box-shadow:0 16px 40px rgba(36,72,124,.06);border-radius:28px;
+    }
+    .footer-brand{display:flex;align-items:center;gap:12px}
+    .footer-meta strong{display:block;color:var(--navy);font-size:.96rem;margin-bottom:4px}
+    .footer-meta span{display:block;color:var(--muted);font-size:.84rem}
+    .footer-links{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+    .footer-links a{color:var(--muted);font-weight:700;font-size:.92rem}
+    .footer-links a.active{color:var(--primary)}
+    @media (max-width:1100px){.brand-sub{display:none}}
+    @media (max-width:860px){.nav-desktop{display:none}.menu-toggle{display:flex}.mobile-panel{display:block}}
+    @media (max-width:760px){
+      .section{padding:68px 0}.container{width:min(var(--max),calc(100% - 24px))}.nav-shell{width:calc(100% - 16px);padding:12px 14px}
+      .footer-card{flex-direction:column;align-items:flex-start;padding:24px}
+    }
+    @media (max-width:520px){.btn{width:100%}.nav-actions{width:100%;justify-content:flex-start}}
+    @media (prefers-reduced-motion: reduce){*{scroll-behavior:auto}.btn,.menu-toggle,.mobile-panel,.menu-backdrop,.menu-toggle .bars span{transition:none !important}}
+    
+.hero{padding:22px 0 38px}
+.hero-card{position:relative;overflow:hidden;border-radius:34px;background:radial-gradient(circle at 12% 10%,rgba(141,197,255,.32),transparent 26%),radial-gradient(circle at 88% 16%,rgba(95,156,255,.18),transparent 18%),linear-gradient(135deg,rgba(255,255,255,.82),rgba(240,247,255,.72));border:1px solid rgba(146,186,229,.28);box-shadow:var(--shadow);padding:64px 56px}
+.hero-card:after{content:"";position:absolute;right:-80px;top:-80px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(93,162,255,.18),transparent 68%)}
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center}
+.hero h1{font-size:clamp(2.8rem,4.9vw,4.9rem);margin-bottom:20px}
+.accent{background:linear-gradient(135deg,#2f7cf6 0%,#7ab8ff 82%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:1.1rem;max-width:720px;margin-bottom:30px}
+.contact-panel{border-radius:28px;padding:30px;background:rgba(255,255,255,.76);border:1px solid rgba(146,186,229,.22);box-shadow:0 14px 32px rgba(36,72,124,.08)}
+.contact-panel h3{font-size:1.2rem;font-weight:800;color:var(--navy);margin-bottom:12px}
+.email-link{display:inline-flex;align-items:center;gap:10px;margin-top:10px;padding:14px 18px;border-radius:16px;background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;font-weight:800;box-shadow:0 14px 30px rgba(47,124,246,.22)}
+.formats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:30px}
+.format{padding:28px 24px;border-radius:22px;background:rgba(255,255,255,.68);border:1px solid rgba(146,186,229,.20);box-shadow:0 14px 32px rgba(36,72,124,.06)}
+.format-icon{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,var(--primary),var(--primary2));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;box-shadow:0 10px 22px rgba(47,124,246,.20);margin-bottom:14px}
+.format h3{font-size:1.04rem;font-weight:800;color:var(--navy);margin-bottom:10px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.card{border-radius:28px;padding:34px}
+.card h3{font-size:1.4rem;font-weight:800;color:var(--navy);margin-bottom:16px}
+.check-list{display:grid;gap:12px;margin-top:20px}
+.check-list li{display:flex;gap:12px;align-items:flex-start;padding:15px 17px;border-radius:16px;background:rgba(245,249,255,.82);border:1px solid rgba(146,186,229,.18);color:var(--navy);font-weight:600;line-height:1.55}
+.check-list .icon{flex-shrink:0;width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;font-size:.78rem;font-weight:900;margin-top:1px}
+.process{position:relative;overflow:hidden;border-radius:28px;padding:38px;background:radial-gradient(circle at top left,rgba(167,213,255,.35),transparent 28%),linear-gradient(135deg,rgba(255,255,255,.84),rgba(240,247,255,.76));border:1px solid rgba(146,186,229,.18);box-shadow:0 12px 36px rgba(31,61,108,.08)}
+.steps{display:grid;gap:14px;margin-top:22px}
+.step{display:grid;grid-template-columns:42px 1fr;gap:14px;align-items:start;padding:16px 18px;border-radius:18px;background:rgba(255,255,255,.76);border:1px solid rgba(146,186,229,.18)}
+.num{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;box-shadow:0 10px 22px rgba(47,124,246,.20)}
+.step strong{display:block;font-size:.98rem;font-weight:800;color:var(--navy);margin-bottom:5px}
+.step span{display:block;color:var(--muted);font-size:.9rem;line-height:1.65;font-weight:600}
+.cta{position:relative;overflow:hidden;border-radius:28px;padding:46px;background:radial-gradient(circle at top left,rgba(167,213,255,.35),transparent 28%),linear-gradient(135deg,rgba(255,255,255,.84),rgba(240,247,255,.76))}
+.cta p{max-width:760px;margin-bottom:24px}
+@media (max-width:1100px){.hero-grid,.grid-2{grid-template-columns:1fr}.formats{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:760px){.hero-card,.card,.process,.cta{padding:24px}.formats{grid-template-columns:1fr}}
+@media (max-width:520px){.hero h1{font-size:2.35rem}}
+</style>
+</head>
+<body>
+<div class="menu-backdrop" id="menuBackdrop" aria-hidden="true"></div>
+<div class="site-nav">
+  <div class="nav-shell">
+    <a href="index.html" class="brand" aria-label="Clarity with Chinmay home">
+      <div class="brand-mark">CK</div>
+      <div>
+        <div class="brand-title">Clarity with Chinmay</div>
+        <div class="brand-sub">IT Audit · Cyber Audit · Risk-first thinking</div>
+      </div>
+    </a>
+    <nav class="nav-desktop" aria-label="Primary"><a class="btn" href="index.html">Home</a>
+<a class="btn" href="why.html">My WHY</a>
+<a class="btn active" href="get-in-touch.html">Get in Touch</a>
+<a class="btn" href="privacy.html">Privacy</a>
+<a class="btn" href="https://chinmayk.notion.site/Chinmay-s-Audit-Hub-2e7ca52f613980e1a8cdc351da65da24" target="_blank" rel="noopener noreferrer">Audit Content</a>
+<a class="btn primary" href="https://substack.com/@kchinmay22" target="_blank" rel="noopener noreferrer">Newsletter</a></nav>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open navigation menu">
+      <span class="bars"><span></span><span></span><span></span></span>
+    </button>
+    <div class="mobile-panel" id="mobileMenu" aria-hidden="true">
+      <nav class="mobile-links" aria-label="Mobile"><a class="btn" href="index.html">Home</a>
+<a class="btn" href="why.html">My WHY</a>
+<a class="btn active" href="get-in-touch.html">Get in Touch</a>
+<a class="btn" href="privacy.html">Privacy</a>
+<a class="btn" href="https://chinmayk.notion.site/Chinmay-s-Audit-Hub-2e7ca52f613980e1a8cdc351da65da24" target="_blank" rel="noopener noreferrer">Audit Content</a>
+<a class="btn primary" href="https://substack.com/@kchinmay22" target="_blank" rel="noopener noreferrer">Newsletter</a></nav>
+    </div>
+  </div>
+</div>
+<main>
+<section class="hero">
+  <div class="container">
+    <div class="hero-card">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Speaking engagements</div>
+          <h1>Bring a <span class="accent">clear, practical voice</span> to your audience.</h1>
+          <p class="lead">I speak on audit, cyber audit, risk thinking, judgment, and the mindset gaps that hold professionals back from truly owning their work.</p>
+          <p class="lead">Whether it is a webinar, training session, panel, or podcast, the goal is always the same: make complex ideas easier to understand, easier to apply, and more useful for the people listening.</p>
+          <a class="email-link" href="mailto:kchinmay22@gmail.com?subject=Speaking%20Engagement%20Inquiry">Email: kchinmay22@gmail.com</a>
+        </div>
+        <div class="contact-panel">
+          <h3>Best fit for</h3>
+          <p>Teams, communities, firms, podcasts, and professional groups looking for grounded, real-world conversations on audit, risk, controls, documentation quality, career growth, and practical professional thinking.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="section-title">
+      <div class="eyebrow">Formats</div>
+      <h2>Ways I can contribute.</h2>
+      <p>The format can be adapted to your audience, time, and objective. I keep the sessions practical, structured, and easy to follow.</p>
+    </div>
+    <div class="formats">
+      <div class="format"><div class="format-icon">W</div><h3>Webinars</h3><p>Focused sessions for larger groups on audit mindset, controls, risk thinking, and real-world execution.</p></div>
+      <div class="format"><div class="format-icon">T</div><h3>Training sessions</h3><p>Structured learning for teams or communities that want practical guidance with strong professional context.</p></div>
+      <div class="format"><div class="format-icon">P</div><h3>Podcasts</h3><p>Conversations that go beyond surface-level advice and explore what actually helps professionals grow.</p></div>
+      <div class="format"><div class="format-icon">•</div><h3>Panels</h3><p>Thoughtful participation in discussions around audit, cyber, professional development, and industry learning.</p></div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="grid-2">
+      <div class="card glass">
+        <div class="section-title" style="margin-bottom:0">
+          <div class="eyebrow">What I usually speak about</div>
+          <h2 style="font-size:2rem;margin-bottom:0">Topics that resonate with audit audiences.</h2>
+        </div>
+        <ul class="check-list">
+          <li><span class="icon">✓</span><span>How to think more clearly about process, risk, control, and evidence</span></li>
+          <li><span class="icon">✓</span><span>The mindset gap between completing work and truly understanding it</span></li>
+          <li><span class="icon">✓</span><span>Walkthroughs, documentation quality, and stronger professional judgment</span></li>
+          <li><span class="icon">✓</span><span>Practical IT audit and cyber audit thinking without unnecessary jargon</span></li>
+          <li><span class="icon">✓</span><span>Career growth lessons for early and mid-career audit professionals</span></li>
+        </ul>
+      </div>
+      <div class="process">
+        <div class="section-title" style="margin-bottom:0">
+          <div class="eyebrow">How to reach out</div>
+          <h2 style="font-size:2rem;margin-bottom:0">Keep it simple.</h2>
+        </div>
+        <div class="steps">
+          <div class="step"><div class="num">1</div><div><strong>Send an email</strong><span>Share your event type, audience, topic idea, and preferred date range.</span></div></div>
+          <div class="step"><div class="num">2</div><div><strong>I review the fit</strong><span>If it aligns, we can discuss the session flow, audience needs, and logistics.</span></div></div>
+          <div class="step"><div class="num">3</div><div><strong>We shape the session</strong><span>The goal is to make it relevant, practical, and valuable for the people attending.</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="cta glass">
+      <div class="section-title">
+        <div class="eyebrow">Get in touch</div>
+        <h2>If you think I could add value to your audience, reach out directly.</h2>
+      </div>
+      <p>The easiest way is email. A short note with the format, audience, and topic is enough to start.</p>
+      <div class="nav-actions" style="justify-content:flex-start;">
+        <a class="btn primary" href="mailto:kchinmay22@gmail.com?subject=Speaking%20Engagement%20Inquiry">Email kchinmay22@gmail.com</a>
+        <a class="btn" href="https://substack.com/@kchinmay22" target="_blank" rel="noopener noreferrer">Newsletter</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<footer style="padding:0 0 26px;">
+  <div class="container">
+    <div class="footer-card">
+      <div class="footer-brand">
+        <div class="brand-mark">CK</div>
+        <div class="footer-meta">
+          <strong>Clarity with Chinmay</strong>
+          <span>IT Audit · Cyber Audit · Risk-first thinking · Practical clarity for professionals</span>
+        </div>
+      </div>
+      <div class="footer-links"><a href="index.html">Home</a>
+<a href="why.html">My WHY</a>
+<a href="get-in-touch.html" class="active">Get in Touch</a>
+<a href="privacy.html">Privacy</a>
+<a href="https://chinmayk.notion.site/Chinmay-s-Audit-Hub-2e7ca52f613980e1a8cdc351da65da24" target="_blank" rel="noopener noreferrer">Audit Content</a>
+<a href="https://substack.com/@kchinmay22" target="_blank" rel="noopener noreferrer">Newsletter</a></div>
+    </div>
+  </div>
+</footer>
+
+    <script>
+    (function () {
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const menuBackdrop = document.getElementById('menuBackdrop');
+      if (!menuToggle || !mobileMenu || !menuBackdrop) return;
+      function openMenu(){mobileMenu.classList.add('open');menuBackdrop.classList.add('show');menuToggle.classList.add('active');menuToggle.setAttribute('aria-expanded','true');mobileMenu.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
+      function closeMenu(){mobileMenu.classList.remove('open');menuBackdrop.classList.remove('show');menuToggle.classList.remove('active');menuToggle.setAttribute('aria-expanded','false');mobileMenu.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+      function toggleMenu(){mobileMenu.classList.contains('open')?closeMenu():openMenu()}
+      menuToggle.addEventListener('click', toggleMenu);
+      menuBackdrop.addEventListener('click', closeMenu);
+      mobileMenu.querySelectorAll('a').forEach(link=>link.addEventListener('click', closeMenu));
+      window.addEventListener('keydown',e=>{if(e.key==='Escape') closeMenu()});
+      window.addEventListener('resize',()=>{if(window.innerWidth>860) closeMenu()});
+    })();
+    </script>
+    
+</body>
+</html>
