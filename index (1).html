@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clarity with Chinmay</title>
+<meta name="description" content="Practical IT audit, cyber audit, and risk-first thinking by Chinmay Kulkarni.">
+<meta name="color-scheme" content="light only">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --surface:rgba(255,255,255,.78);
+  --surface-strong:rgba(255,255,255,.92);
+  --text:#0e1726;
+  --muted:#5e6b7a;
+  --line:rgba(142,180,223,.24);
+  --primary:#2f7cf6;
+  --primary2:#67a8ff;
+  --navy:#0f1e33;
+  --shadow:0 20px 60px rgba(31,61,108,.12);
+  --shadow-soft:0 12px 36px rgba(31,61,108,.08);
+  --max:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{
+  scroll-behavior:smooth;
+  background:
+    radial-gradient(circle at top left,rgba(135,190,255,.22),transparent 28%),
+    radial-gradient(circle at top right,rgba(113,168,255,.20),transparent 24%),
+    linear-gradient(180deg,#fbfdff 0%,#f4f9ff 100%);
+}
+body{
+  font-family:Inter,Arial,sans-serif;
+  color:var(--text);
+  background:transparent;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  line-height:1.6;
+}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+p{color:var(--muted);line-height:1.8}
+.container{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+.glass{
+  background:var(--surface);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border:1px solid var(--line);
+  box-shadow:var(--shadow-soft);
+}
+.site-nav{position:sticky;top:0;z-index:100;padding-top:14px}
+.nav-shell{
+  width:min(var(--max),calc(100% - 24px));
+  margin:0 auto;
+  border-radius:20px;
+  background:rgba(255,255,255,.72);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border:1px solid rgba(133,171,216,.22);
+  box-shadow:0 18px 50px rgba(36,72,124,.08);
+  padding:12px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand-mark{
+  width:42px;height:42px;border-radius:13px;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:900;font-size:.95rem;letter-spacing:-.04em;
+  background:linear-gradient(135deg,#2f7cf6 0%,#71b2ff 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.24),0 10px 26px rgba(47,124,246,.24);
+  flex-shrink:0;
+}
+.brand-title{font-size:1rem;font-weight:800;color:var(--navy);line-height:1.1}
+.brand-sub{font-size:.82rem;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:44px;padding:0 18px;border-radius:13px;
+  font-size:.9rem;font-weight:700;
+  border:1px solid rgba(119,159,207,.28);
+  background:rgba(255,255,255,.72);
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+  white-space:nowrap;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary{
+  color:#fff;
+  background:linear-gradient(135deg,var(--primary) 0%,var(--primary2) 100%);
+  border-color:rgba(71,143,246,.35);
+  box-shadow:0 14px 34px rgba(47,124,246,.24);
+}
+.btn.active{
+  color:var(--primary);
+  background:rgba(47,124,246,.08);
+  border-color:rgba(47,124,246,.24);
+}
+.section{padding:88px 0}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:.74rem;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--primary);margin-bottom:14px;
+}
+.eyebrow:before{
+  content:"";width:10px;height:10px;border-radius:50%;
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  box-shadow:0 0 0 6px rgba(47,124,246,.10);
+}
+h1,h2,h3{letter-spacing:-.04em;line-height:1.08;color:var(--navy)}
+.section-title{max-width:780px;margin-bottom:28px}
+.section-title h2{font-size:clamp(2.1rem,3.3vw,3.5rem);margin-bottom:16px}
+.footer-card{
+  border-radius:28px;padding:34px;display:flex;align-items:center;justify-content:space-between;gap:18px;
+  background:rgba(255,255,255,.68);border:1px solid rgba(146,186,229,.18);box-shadow:0 16px 40px rgba(36,72,124,.06);
+}
+.footer-brand{display:flex;align-items:center;gap:12px}
+.footer-meta strong{display:block;color:var(--navy);font-size:.96rem;margin-bottom:4px}
+.footer-meta span{display:block;color:var(--muted);font-size:.84rem}
+.footer-links{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.footer-links a{color:var(--muted);font-weight:700;font-size:.92rem}
+.footer-links a.active{color:var(--primary)}
+.link-arrow{display:inline-flex;align-items:center;gap:10px;color:var(--primary);font-weight:700}
+.link-arrow:hover{gap:14px}
+@media (max-width:1100px){
+  .brand-sub{display:none}
+}
+@media (max-width:760px){
+  .section{padding:68px 0}
+  .container{width:min(var(--max),calc(100% - 24px))}
+  .nav-shell{width:calc(100% - 16px);padding:12px 14px}
+  .footer-card{flex-direction:column;align-items:flex-start;padding:24px}
+}
+@media (max-width:520px){
+  .btn{width:100%}
+  .nav-actions{width:100%;justify-content:flex-start}
+}
+
+.hero{padding:22px 0 38px}
+.hero-card{
+  position:relative;overflow:hidden;border-radius:34px;
+  background:
+    radial-gradient(circle at 12% 10%,rgba(141,197,255,.32),transparent 26%),
+    radial-gradient(circle at 88% 16%,rgba(95,156,255,.18),transparent 18%),
+    linear-gradient(135deg,rgba(255,255,255,.82),rgba(240,247,255,.72));
+  border:1px solid rgba(146,186,229,.28);box-shadow:var(--shadow);padding:42px;
+}
+.hero-grid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(420px,1.08fr);gap:28px;align-items:center}
+.hero-copy{max-width:540px}
+.chip{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;font-size:.82rem;font-weight:700;color:var(--navy);background:rgba(255,255,255,.72);border:1px solid rgba(141,178,222,.24);margin-bottom:22px}
+.chip:before{content:"";width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary2));box-shadow:0 0 0 6px rgba(47,124,246,.10)}
+.hero h1{font-size:clamp(3rem,5vw,5rem);margin-bottom:18px}
+.accent{background:linear-gradient(135deg,#2f7cf6 0%,#7ab8ff 82%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-subline{margin-bottom:22px;color:var(--primary);font-weight:700;font-size:.96rem}
+.hero-lead{font-size:1.08rem;max-width:520px;margin-bottom:26px}
+.hero-quote{padding:22px 24px;border-radius:22px;background:rgba(255,255,255,.66);border:1px solid rgba(146,186,229,.24);box-shadow:0 14px 34px rgba(36,72,124,.08);margin-bottom:26px}
+.hero-quote p{font-style:italic;color:#445162}
+.hero-note{margin-top:10px;font-size:.82rem;color:#708093;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.hero-metrics{display:flex;gap:12px;flex-wrap:wrap}
+.metric{min-width:148px;padding:16px 18px;border-radius:18px;background:rgba(255,255,255,.64);border:1px solid rgba(146,186,229,.22);box-shadow:0 12px 28px rgba(36,72,124,.06)}
+.metric strong{display:block;font-size:1.3rem;color:var(--navy);margin-bottom:8px}
+.metric span{display:block;font-size:.82rem;color:var(--muted);font-weight:600;line-height:1.55}
+.hero-visual{display:flex;justify-content:flex-end;align-items:center}
+.hero-photo-wrap{width:min(100%,700px);height:690px;border-radius:34px;overflow:hidden;position:relative;box-shadow:0 26px 60px rgba(28,57,100,.18);border:1px solid rgba(255,255,255,.42);background:linear-gradient(160deg,#ddecff 0%,#eef6ff 100%)}
+.hero-photo-wrap:before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,.08),rgba(255,255,255,.01)),linear-gradient(to top,rgba(15,30,51,.08),rgba(15,30,51,0) 32%);z-index:2;pointer-events:none}
+.hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 10%;transform:scale(1.01)}
+.start-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:24px}
+.starter-card,.path-card,.difference-card,.learn-card{border-radius:28px}
+.starter-card,.path-card{padding:34px}
+.starter-card{background:radial-gradient(circle at top left,rgba(160,210,255,.24),transparent 30%),linear-gradient(160deg,rgba(255,255,255,.80),rgba(240,247,255,.78));border:1px solid rgba(146,186,229,.22);box-shadow:var(--shadow-soft)}
+.starter-card h3,.path-card h3{font-size:1.45rem;margin-bottom:14px}
+.starter-steps{display:grid;gap:12px;margin-top:22px}
+.starter-step{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;border-radius:18px;background:rgba(255,255,255,.76);border:1px solid rgba(146,186,229,.18)}
+.step-num{width:34px;height:34px;border-radius:11px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;font-weight:900;font-size:.84rem;flex-shrink:0}
+.starter-step strong{display:block;color:var(--navy);font-size:.96rem;margin-bottom:4px}
+.starter-step span{display:block;color:var(--muted);font-size:.86rem;line-height:1.6;font-weight:600}
+.paths-wrap{display:grid;gap:24px}
+.path-card{display:flex;flex-direction:column;gap:18px;background:rgba(255,255,255,.68);border:1px solid rgba(146,186,229,.20);box-shadow:0 14px 32px rgba(36,72,124,.06);padding:34px}
+.path-card.featured{background:radial-gradient(circle at top left,rgba(160,210,255,.22),transparent 30%),linear-gradient(160deg,rgba(255,255,255,.80),rgba(240,247,255,.78))}
+.tag{display:inline-flex;align-items:center;gap:10px;width:fit-content;padding:10px 15px;border-radius:999px;background:rgba(245,249,255,.86);border:1px solid rgba(146,186,229,.18);color:var(--primary);font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.difference-grid,.learn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
+.difference-card,.learn-card{padding:26px 24px;background:rgba(255,255,255,.68);border:1px solid rgba(146,186,229,.20);box-shadow:0 14px 32px rgba(36,72,124,.06)}
+.difference-card h3,.learn-card h3{font-size:1.08rem;margin-bottom:10px}
+.learn-num{width:34px;height:34px;border-radius:11px;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;font-weight:900;margin-bottom:16px;box-shadow:0 10px 22px rgba(47,124,246,.18)}
+@media (max-width:1100px){
+  .hero-grid,.start-grid,.difference-grid,.learn-grid{grid-template-columns:1fr}
+  .hero-visual{justify-content:center}
+  .hero-photo-wrap{width:min(100%,760px);height:auto;aspect-ratio:1.02/1}
+  .difference-grid,.learn-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:760px){
+  .hero-card,.starter-card,.path-card,.difference-card,.learn-card{padding:24px}
+  .hero-grid{display:flex;flex-direction:column;padding:0;gap:20px}
+  .hero-visual{order:1;width:100%}
+  .hero-copy{order:2;max-width:none}
+  .hero-photo-wrap{width:100%;aspect-ratio:.92/1;border-radius:24px}
+  .hero h1{font-size:clamp(2.3rem,9vw,3.2rem)}
+  .hero-lead{font-size:.98rem}
+  .hero-metrics{display:grid;grid-template-columns:1fr}
+  .difference-grid,.learn-grid{grid-template-columns:1fr}
+}
+@media (max-width:520px){.hero h1{font-size:2.18rem}}
+</style>
+</head>
+<body>
+
+<div class="site-nav">
+  <div class="nav-shell">
+    <a href="index.html" class="brand">
+      <div class="brand-mark">CK</div>
+      <div>
+        <div class="brand-title">Clarity with Chinmay</div>
+        <div class="brand-sub">IT Audit · Cyber Audit · Risk-first thinking</div>
+      </div>
+    </a>
+    <div class="nav-actions">
+      
+<a class="btn active" href="index.html">Home</a>
+<a class="btn" href="why.html">My WHY</a>
+<a class="btn" href="get-in-touch.html">Get in Touch</a>
+<a class="btn" href="privacy.html">Privacy</a>
+
+      <a class="btn" href="https://chinmayk.notion.site/Chinmay-s-Audit-Hub-2e7ca52f613980e1a8cdc351da65da24" target="_blank" rel="noopener noreferrer">Audit Content</a>
+      <a class="btn primary" href="https://substack.com/@kchinmay22" target="_blank" rel="noopener noreferrer">Newsletter</a>
+    </div>
+  </div>
+</div>
+
+<main>
+<section class="hero">
+  <div class="container">
+    <div class="hero-card">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="chip">IT Audit · Cyber Audit · GRC</div>
+          <h1>Be the IT Auditor <span class="accent">Who Thinks Clearly.</span></h1>
+          <p class="hero-subline">Helping auditors think clearly about risk, control, and evidence.</p>
+          <p class="hero-lead">Most auditors do not struggle because they lack effort. They struggle because nobody taught them how to think clearly about process, risk, control, and evidence.</p>
+          <div class="hero-quote">
+            <p>I am building a place where auditors learn <strong>how to think</strong>, not just what to test. So you can walk into meetings with clarity, explain your work with confidence, and stop relying on borrowed language.</p>
+            <div class="hero-note">Chinmay Kulkarni · Clarity with Chinmay</div>
+          </div>
+          <div class="nav-actions" style="justify-content:flex-start;margin-bottom:28px;">
+            <a class="btn primary" href="https://substack.com/@kchinmay22" target="_blank" rel="noopener noreferrer">Join Newsletter</a>
+            <a class="btn" href="why.html">Read My WHY</a>
+          </div>
+          <div class="hero-metrics">
+            <div class="metric"><strong>20,000+</strong><span>LinkedIn followers learning practical audit thinking</span></div>
+            <div class="metric"><strong>5+ years</strong><span>Experience across external audit and cyber-focused internal audit</span></div>
+            <div class="metric"><strong>CISA · CRISC</strong><span>Risk-led approach grounded in practice, not just certification theory</span></div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-photo-wrap">
+            <img src="chinmay_optimized.jpg" alt="Chinmay Kulkarni" class="hero-photo">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-title">
+      <div class="eyebrow">Start here</div>
+      <h2>Use the website the way it was meant to be used.</h2>
+      <p>Each page has a different role. The homepage gives you the overview. My WHY gives you the belief behind it. Get in Touch is for speaking opportunities. The newsletter is where the thinking continues consistently.</p>
+    </div>
+    <div class="start-grid">
+      <div class="starter-card">
+        <h3>If you are new here</h3>
+        <p>Use this order to get the most value from the platform.</p>
+        <div class="starter-steps">
+          <div class="starter-step"><div class="step-num">01</div><div><strong>Read My WHY</strong><span>Start with the deeper reason this platform exists and the problem it is trying to solve.</span></div></div>
+          <div class="starter-step"><div class="step-num">02</div><div><strong>Explore Audit Content</strong><span>Use the frameworks and ideas to sharpen your thinking in real audit work.</span></div></div>
+          <div class="starter-step"><div class="step-num">03</div><div><strong>Join the Newsletter</strong><span>Stay close to the ideas through consistent, practical writing on Substack.</span></div></div>
+        </div>
+      </div>
+      <div class="paths-wrap">
+        <div class="path-card featured">
+          <div class="tag">My WHY</div>
+          <h3>The deeper explanation behind everything here</h3>
+          <p>This page explains the real problem in audit, why experience alone is not enough, and why thinking clearly matters more than simply completing procedures.</p>
+          <a class="link-arrow" href="why.html">Open My WHY <span>→</span></a>
+        </div>
+        <div class="path-card">
+          <div class="tag">Newsletter</div>
+          <h3>Clarity with Chinmay on Substack</h3>
+          <p>Practical audit thinking, consistently. No fluff. No inflated language. Just ideas you can carry into your next walkthrough, workpaper, or review conversation.</p>
+          <a class="link-arrow" href="https://substack.com/@kchinmay22" target="_blank" rel="noopener noreferrer">Open Newsletter <span>→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-title">
+      <div class="eyebrow">What makes this different</div>
+      <h2>A calmer, clearer way to learn audit.</h2>
+      <p>This platform is shaped by real audit work, not borrowed language. The goal is clarity that holds up in walkthroughs, reviews, and real conversations.</p>
+    </div>
+    <div class="difference-grid">
+      <div class="difference-card"><h3>No textbook fog</h3><p>I simplify audit without dumbing it down, so the ideas become easier to apply in real work.</p></div>
+      <div class="difference-card"><h3>Risk-first thinking</h3><p>Everything begins with understanding the risk, not memorizing the testing step.</p></div>
+      <div class="difference-card"><h3>Built from real work</h3><p>This comes from actual audit pressure, review comments, walkthroughs, and the lessons that follow them.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-title">
+      <div class="eyebrow">What you will learn here</div>
+      <h2>Everything here is designed to help you become more clear, more trusted, and more useful.</h2>
+      <p>Not by giving you more noise. By making the fundamentals easier to understand and easier to apply in real work.</p>
+    </div>
+    <div class="learn-grid">
+      <div class="learn-card"><div class="learn-num">01</div><h3>Explain your work clearly</h3><p>So walkthroughs, review conversations, and status meetings stop feeling like rehearsed scripts.</p></div>
+      <div class="learn-card"><div class="learn-num">02</div><h3>Connect evidence to risk</h3><p>So you ask for proof that matters instead of collecting screenshots that say very little.</p></div>
+      <div class="learn-card"><div class="learn-num">03</div><h3>Write stronger workpapers</h3><p>So documentation reflects your thinking instead of hiding the absence of it.</p></div>
+      <div class="learn-card"><div class="learn-num">04</div><h3>Think like a reviewer</h3><p>So you can challenge your own conclusion before somebody else has to do it for you.</p></div>
+      <div class="learn-card"><div class="learn-num">05</div><h3>Run better walkthroughs</h3><p>So the meeting becomes a conversation about risk, not just a guided tour through screens.</p></div>
+      <div class="learn-card"><div class="learn-num">06</div><h3>Build judgment, not dependency</h3><p>So you stop leaning on copied language and start building a point of view that is your own.</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer style="padding:0 0 26px;">
+  <div class="container">
+    <div class="footer-card">
+      <div class="footer-brand">
+        <div class="brand-mark">CK</div>
+        <div class="footer-meta">
+          <strong>Clarity with Chinmay</strong>
+          <span>IT Audit · Cyber Audit · Risk-first thinking · Practical clarity for professionals</span>
+        </div>
+      </div>
+      <div class="footer-links">
+        
+<a href="index.html" class="active">Home</a>
+<a href="why.html">My WHY</a>
+<a href="get-in-touch.html">Get in Touch</a>
+<a href="privacy.html">Privacy</a>
+
+        <a href="https://chinmayk.notion.site/Chinmay-s-Audit-Hub-2e7ca52f613980e1a8cdc351da65da24" target="_blank" rel="noopener noreferrer">Audit Content</a>
+        <a href="https://substack.com/@kchinmay22" target="_blank" rel="noopener noreferrer">Newsletter</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
