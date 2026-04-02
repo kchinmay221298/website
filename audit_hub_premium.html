@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Audit Hub | Clarity with Chinmay</title>
+  <meta name="description" content="Explore the Audit Hub by Chinmay Kulkarni — a structured, practical learning system for auditors who want to think clearly about risk, control, evidence, and judgment." />
+  <meta name="color-scheme" content="light only" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --surface: rgba(255,255,255,.78);
+      --surface-strong: rgba(255,255,255,.92);
+      --text:#0e1726;
+      --muted:#5e6b7a;
+      --line:rgba(142,180,223,.24);
+      --primary:#2f7cf6;
+      --primary2:#67a8ff;
+      --navy:#0f1e33;
+      --shadow:0 20px 60px rgba(31,61,108,.12);
+      --shadow-soft:0 12px 36px rgba(31,61,108,.08);
+      --max:1180px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{
+      scroll-behavior:smooth;
+      background:
+        radial-gradient(circle at top left,rgba(135,190,255,.22),transparent 28%),
+        radial-gradient(circle at top right,rgba(113,168,255,.20),transparent 24%),
+        linear-gradient(180deg,#fbfdff 0%,#f4f9ff 100%);
+    }
+    body{
+      font-family:Inter,Arial,sans-serif;
+      color:var(--text);
+      background:transparent;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+    p{color:var(--muted);line-height:1.8}
+    strong{color:var(--navy)}
+    .container{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+    .glass{
+      background:var(--surface);
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow-soft);
+    }
+    .site-nav{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      padding-top:14px;
+    }
+    .nav-shell{
+      width:min(var(--max),calc(100% - 24px));
+      margin:0 auto;
+      border-radius:20px;
+      background:rgba(255,255,255,.72);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      border:1px solid rgba(133,171,216,.22);
+      box-shadow:0 18px 50px rgba(36,72,124,.08);
+      padding:12px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      position:relative;
+    }
+    .brand{display:flex;align-items:center;gap:12px;min-width:0;z-index:3}
+    .brand-mark{
+      width:42px;height:42px;border-radius:13px;
+      display:flex;align-items:center;justify-content:center;
+      color:#fff;font-weight:900;font-size:.95rem;letter-spacing:-.04em;
+      background:linear-gradient(135deg,#2f7cf6 0%,#71b2ff 100%);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.24),0 10px 26px rgba(47,124,246,.24);
+      flex-shrink:0;
+    }
+    .brand-title{font-size:1rem;font-weight:800;color:var(--navy);line-height:1.1}
+    .brand-sub{font-size:.82rem;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .nav-desktop{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      min-height:44px;padding:0 18px;border-radius:13px;
+      font-size:.9rem;font-weight:700;
+      border:1px solid rgba(119,159,207,.28);
+      background:rgba(255,255,255,.72);
+      transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease, color .2s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn.primary{
+      color:#fff;
+      background:linear-gradient(135deg,var(--primary) 0%,var(--primary2) 100%);
+      border-color:rgba(71,143,246,.35);
+      box-shadow:0 14px 34px rgba(47,124,246,.24);
+    }
+    .btn.active{
+      color:var(--primary);
+      background:rgba(47,124,246,.08);
+      border-color:rgba(47,124,246,.24);
+    }
+    .menu-toggle{
+      display:none;
+      width:46px;height:46px;border-radius:14px;
+      align-items:center;justify-content:center;
+      border:1px solid rgba(119,159,207,.28);
+      background:rgba(255,255,255,.72);
+      cursor:pointer;z-index:3;-webkit-tap-highlight-color: transparent;
+    }
+    .menu-toggle .bars{width:18px;height:14px;position:relative;display:block}
+    .menu-toggle .bars span{position:absolute;left:0;width:100%;height:2px;border-radius:999px;background:var(--navy);transition:transform .28s ease, opacity .2s ease, top .28s ease}
+    .menu-toggle .bars span:nth-child(1){top:0}
+    .menu-toggle .bars span:nth-child(2){top:6px}
+    .menu-toggle .bars span:nth-child(3){top:12px}
+    .menu-toggle.active .bars span:nth-child(1){top:6px;transform:rotate(45deg)}
+    .menu-toggle.active .bars span:nth-child(2){opacity:0}
+    .menu-toggle.active .bars span:nth-child(3){top:6px;transform:rotate(-45deg)}
+    .mobile-panel{
+      display:none;position:absolute;left:12px;right:12px;top:calc(100% + 10px);
+      border-radius:22px;background:rgba(255,255,255,.78);
+      backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+      border:1px solid rgba(133,171,216,.22);box-shadow:0 18px 50px rgba(36,72,124,.12);
+      padding:12px;transform-origin:top center;opacity:0;transform:translateY(-10px) scale(.985);pointer-events:none;
+      transition:opacity .26s ease, transform .30s cubic-bezier(.2,.8,.2,1);
+    }
+    .mobile-panel.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+    .mobile-links{display:grid;gap:10px}
+    .mobile-links .btn{width:100%;min-height:52px;justify-content:center;font-size:1rem;border-radius:16px}
+    .menu-backdrop{
+      position:fixed;inset:0;background:rgba(15,30,51,.16);
+      backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
+      opacity:0;pointer-events:none;transition:opacity .24s ease;z-index:900;
+    }
+    .menu-backdrop.show{opacity:1;pointer-events:auto}
+
+    .section{padding:96px 0}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;
+      font-size:.74rem;font-weight:700;letter-spacing:.14em;
+      text-transform:uppercase;color:var(--primary);margin-bottom:14px;
+    }
+    .eyebrow:before{
+      content:"";width:10px;height:10px;border-radius:50%;
+      background:linear-gradient(135deg,var(--primary),var(--primary2));
+      box-shadow:0 0 0 6px rgba(47,124,246,.10);
+    }
+    h1,h2,h3{letter-spacing:-.04em;line-height:1.06;color:var(--navy)}
+
+    .hero{padding:22px 0 34px}
+    .hero-card{
+      position:relative;overflow:hidden;border-radius:34px;
+      background:
+        radial-gradient(circle at 12% 10%,rgba(141,197,255,.32),transparent 26%),
+        radial-gradient(circle at 88% 16%,rgba(95,156,255,.18),transparent 18%),
+        linear-gradient(135deg,rgba(255,255,255,.82),rgba(240,247,255,.72));
+      border:1px solid rgba(146,186,229,.28);
+      box-shadow:var(--shadow);
+      padding:56px 48px;
+    }
+    .hero-card:after{
+      content:"";
+      position:absolute;
+      right:-90px;top:-90px;
+      width:380px;height:380px;border-radius:50%;
+      background:radial-gradient(circle,rgba(93,162,255,.18),transparent 68%);
+      pointer-events:none;
+    }
+    .hero-grid{
+      position:relative;z-index:2;
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:28px;
+      align-items:center;
+    }
+    .hero-copy{max-width:620px}
+    .chip{
+      display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;font-size:.82rem;font-weight:700;color:var(--navy);background:rgba(255,255,255,.72);border:1px solid rgba(141,178,222,.24);margin-bottom:22px;
+    }
+    .chip:before{
+      content:"";width:8px;height:8px;border-radius:50%;
+      background:linear-gradient(135deg,var(--primary),var(--primary2));
+      box-shadow:0 0 0 6px rgba(47,124,246,.10);
+    }
+    .hero h1{font-size:clamp(3rem,5.1vw,5rem);margin-bottom:18px}
+    .accent{
+      background:linear-gradient(135deg,#2f7cf6 0%,#7ab8ff 82%);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .hero-subline{
+      margin-bottom:20px;
+      color:var(--primary);
+      font-weight:700;
+      font-size:.98rem;
+    }
+    .hero-lead{font-size:1.08rem;max-width:560px;margin-bottom:22px}
+    .hero-note{
+      padding:18px 20px;
+      border-radius:20px;
+      background:rgba(255,255,255,.68);
+      border:1px solid rgba(146,186,229,.18);
+      box-shadow:0 12px 30px rgba(36,72,124,.06);
+      margin-top:14px;
+    }
+    .hero-note p{font-size:.96rem;line-height:1.75}
+    .hero-side{display:grid;gap:16px}
+    .hero-panel{
+      border-radius:24px;
+      padding:24px;
+      background:rgba(255,255,255,.72);
+      border:1px solid rgba(146,186,229,.20);
+      box-shadow:0 14px 32px rgba(36,72,124,.07);
+    }
+    .hero-panel h3{font-size:1.12rem;margin-bottom:10px}
+
+    .story-row{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:24px;
+      align-items:start;
+    }
+    .sticky-card{
+      position:sticky;
+      top:110px;
+      border-radius:28px;
+      padding:34px;
+      background:radial-gradient(circle at top left,rgba(160,210,255,.24),transparent 30%),linear-gradient(160deg,rgba(255,255,255,.84),rgba(240,247,255,.78));
+      border:1px solid rgba(146,186,229,.22);
+      box-shadow:var(--shadow-soft);
+    }
+    .sticky-card h2{font-size:2rem;margin-bottom:14px}
+    .stack{display:grid;gap:18px}
+    .story-card{
+      border-radius:26px;
+      padding:30px;
+      background:rgba(255,255,255,.70);
+      border:1px solid rgba(146,186,229,.20);
+      box-shadow:0 14px 32px rgba(36,72,124,.06);
+    }
+    .story-card h3{font-size:1.3rem;margin-bottom:12px}
+    .story-card p + p{margin-top:12px}
+    .story-quote{
+      padding:22px 24px;
+      border-radius:20px;
+      background:linear-gradient(135deg,#2f7cf6 0%,#70b4ff 100%);
+      box-shadow:0 18px 38px rgba(47,124,246,.22);
+    }
+    .story-quote p{
+      color:rgba(255,255,255,.94);
+      font-size:1.02rem;
+      font-weight:700;
+      line-height:1.8;
+    }
+
+    .hub-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:30px;
+    }
+    .hub-card{
+      padding:28px 24px;
+      border-radius:22px;
+      background:rgba(255,255,255,.68);
+      border:1px solid rgba(146,186,229,.20);
+      box-shadow:0 14px 32px rgba(36,72,124,.06);
+    }
+    .hub-icon{
+      width:46px;height:46px;border-radius:14px;
+      background:linear-gradient(135deg,var(--primary),var(--primary2));
+      display:flex;align-items:center;justify-content:center;
+      color:#fff;font-weight:900;
+      box-shadow:0 10px 22px rgba(47,124,246,.20);
+      margin-bottom:14px;
+    }
+    .hub-card h3{font-size:1.06rem;margin-bottom:10px}
+
+    .steps-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:30px;
+    }
+    .step-card{
+      padding:28px 24px;
+      border-radius:22px;
+      background:rgba(255,255,255,.68);
+      border:1px solid rgba(146,186,229,.20);
+      box-shadow:0 14px 32px rgba(36,72,124,.06);
+    }
+    .step-num{
+      width:36px;height:36px;border-radius:12px;
+      display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(135deg,var(--primary),var(--primary2));
+      color:#fff;font-weight:900;
+      box-shadow:0 10px 22px rgba(47,124,246,.18);
+      margin-bottom:14px;
+    }
+    .step-card h3{font-size:1.06rem;margin-bottom:10px}
+
+    .cta{
+      position:relative;overflow:hidden;border-radius:30px;padding:46px;
+      background:
+        radial-gradient(circle at top left,rgba(167,213,255,.35),transparent 28%),
+        linear-gradient(135deg,rgba(255,255,255,.84),rgba(240,247,255,.76));
+      border:1px solid rgba(146,186,229,.18);
+      box-shadow:var(--shadow-soft);
+    }
+    .cta:before{
+      content:"";
+      position:absolute;inset:auto -90px -90px auto;
+      width:240px;height:240px;border-radius:50%;
+      background:radial-gradient(circle,rgba(93,162,255,.22),transparent 68%);
+      pointer-events:none;
+    }
+    .cta p{max-width:760px;margin-bottom:24px}
+
+    .reveal{
+      opacity:0;
+      transform:translateY(26px) scale(.985);
+      transition:opacity .7s ease, transform .8s cubic-bezier(.2,.8,.2,1);
+      will-change:transform, opacity;
+    }
+    .reveal.in{
+      opacity:1;
+      transform:translateY(0) scale(1);
+    }
+    .reveal[data-delay="1"]{transition-delay:.08s}
+    .reveal[data-delay="2"]{transition-delay:.16s}
+    .reveal[data-delay="3"]{transition-delay:.24s}
+
+    .footer-card{
+      padding:34px;display:flex;align-items:center;justify-content:space-between;gap:18px;
+      background:rgba(255,255,255,.68);border:1px solid rgba(146,186,229,.18);box-shadow:0 16px 40px rgba(36,72,124,.06);border-radius:28px;
+    }
+    .footer-brand{display:flex;align-items:center;gap:12px}
+    .footer-meta strong{display:block;color:var(--navy);font-size:.96rem;margin-bottom:4px}
+    .footer-meta span{display:block;color:var(--muted);font-size:.84rem}
+    .footer-links{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+    .footer-links a{color:var(--muted);font-weight:700;font-size:.92rem}
+    .footer-links a.active{color:var(--primary)}
+
+    @media (max-width:1100px){
+      .hero-grid,.story-row,.hub-grid,.steps-grid{grid-template-columns:1fr}
+      .sticky-card{position:relative;top:auto}
+      .hub-grid,.steps-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:860px){
+      .nav-desktop{display:none}
+      .menu-toggle{display:flex}
+      .mobile-panel{display:block}
+    }
+    @media (max-width:760px){
+      .section{padding:72px 0}
+      .container{width:min(var(--max),calc(100% - 24px))}
+      .nav-shell{width:calc(100% - 16px);padding:12px 14px}
+      .brand-sub{display:none}
+      .hero-card,.sticky-card,.story-card,.hub-card,.step-card,.cta,.footer-card,.hero-panel{padding:24px}
+      .hero-grid{grid-template-columns:1fr}
+      .hero h1{font-size:clamp(2.3rem,9vw,3.2rem)}
+      .hero-side{grid-template-columns:1fr}
+      .hub-grid,.steps-grid{grid-template-columns:1fr}
+      .footer-card{flex-direction:column;align-items:flex-start}
+    }
+    @media (max-width:520px){
+      .btn{width:100%}
+      .hero h1{font-size:2.18rem}
+    }
+    @media (prefers-reduced-motion: reduce){
+      *{scroll-behavior:auto}
+      .btn,.menu-toggle,.mobile-panel,.menu-backdrop,.menu-toggle .bars span,.reveal{transition:none !important}
+      .reveal{opacity:1 !important;transform:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="menu-backdrop" id="menuBackdrop" aria-hidden="true"></div>
+
+  <div class="site-nav">
+    <div class="nav-shell">
+      <a href="index.html" class="brand" aria-label="Clarity with Chinmay home">
+        <div class="brand-mark">CK</div>
+        <div>
+          <div class="brand-title">Clarity with Chinmay</div>
+          <div class="brand-sub">IT Audit · Cyber Audit · Risk-first thinking</div>
+        </div>
+      </a>
+
+      <nav class="nav-desktop" aria-label="Primary">
+        <a class="btn" href="index.html">Home</a>
+        <a class="btn" href="why.html">My WHY</a>
+        <a class="btn" href="get-in-touch.html">Get in Touch</a>
+        <a class="btn" href="privacy.html">Privacy</a>
+        <a class="btn active" href="audit-hub.html">Audit Hub</a>
+        <a class="btn primary" href="https://substack.com/@kchinmay22" target="_blank" rel="noopener noreferrer">Newsletter</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open navigation menu">
+        <span class="bars"><span></span><span></span><span></span></span>
+      </button>
+
+      <div class="mobile-panel" id="mobileMenu" aria-hidden="true">
+        <nav class="mobile-links" aria-label="Mobile">
+          <a class="btn" href="index.html">Home</a>
+          <a class="btn" href="why.html">My WHY</a>
+          <a class="btn" href="get-in-touch.html">Get in Touch</a>
+          <a class="btn" href="privacy.html">Privacy</a>
+          <a class="btn active" href="audit-hub.html">Audit Hub</a>
+          <a class="btn primary" href="https://substack.com/@kchinmay22" target="_blank" rel="noopener noreferrer">Newsletter</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card reveal in">
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <div class="chip">Everything in one place</div>
+              <h1>The <span class="accent">Audit Hub</span> is where scattered learning becomes structured understanding.</h1>
+              <p class="hero-subline">Built for auditors who want one clear place to think better, not just consume more.</p>
+              <p class="hero-lead">
+                Most audit learning is fragmented. One post here. One explanation there. One useful idea buried inside weeks of noise.
+                The Audit Hub brings the important thinking together in one structured system.
+              </p>
+              <div class="hero-note">
+                <p>This is not a content dump. It is a practical learning environment designed to help auditors understand process, risk, control, evidence, documentation, and judgment in a way that actually carries into real work.</p>
+              </div>
+            </div>
+
+            <div class="hero-side">
+              <div class="hero-panel reveal" data-delay="1">
+                <h3>What it solves</h3>
+                <p>It reduces scattered learning and replaces it with a single place where ideas connect clearly.</p>
+              </div>
+              <div class="hero-panel reveal" data-delay="2">
+                <h3>What it gives you</h3>
+                <p>Clarity, structure, and a repeatable way to keep improving your thinking in audit over time.</p>
+              </div>
+              <div class="hero-panel reveal" data-delay="3">
+                <h3>Best next step</h3>
+                <p>Explore the hub first, then stay close to the ideas through the newsletter as they keep evolving.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="story-row">
+          <div class="sticky-card reveal">
+            <div class="eyebrow">Why the hub exists</div>
+            <h2>Because most people do not need more content. They need more connection between ideas.</h2>
+            <p>
+              The Audit Hub exists to remove friction. Instead of trying to remember where you saw something useful,
+              you have one place where the important concepts live together.
+            </p>
+          </div>
+
+          <div class="stack">
+            <div class="story-card reveal" data-delay="1">
+              <h3>The usual problem</h3>
+              <p>Auditors often learn in fragments. A LinkedIn post explains one point. A note captures another. A separate thread talks about evidence. A different video touches documentation. Individually useful. Together still scattered.</p>
+              <p>That makes it harder to build real understanding because nothing feels connected enough to become part of your thinking.</p>
+            </div>
+
+            <div class="story-card reveal" data-delay="2">
+              <h3>What changes inside the Audit Hub</h3>
+              <p>The content is brought into one place so the ideas stop feeling random. You can move from fundamentals to application, from one concept to the next, and from isolated tips to a clearer mental model of how audit actually works.</p>
+            </div>
+
+            <div class="story-quote reveal" data-delay="3">
+              <p>The point of the Audit Hub is simple: stop making auditors search for clarity in ten different places when it can live in one.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-title reveal">
+          <div class="eyebrow">What you will find inside</div>
+          <h2>The hub is designed to hold the full picture, not just isolated pieces.</h2>
+          <p>The exact content may evolve, but the purpose stays the same: make it easier to understand how audit works and how to think more clearly inside it.</p>
+        </div>
+
+        <div class="hub-grid">
+          <div class="hub-card reveal" data-delay="1">
+            <div class="hub-icon">F</div>
+            <h3>Fundamentals</h3>
+            <p>Core thinking around process, risk, control, and evidence so the base layer is strong before execution gets complicated.</p>
+          </div>
+
+          <div class="hub-card reveal" data-delay="2">
+            <div class="hub-icon">W</div>
+            <h3>Walkthrough logic</h3>
+            <p>How to think through walkthroughs with more depth, better questions, and stronger understanding of what actually matters.</p>
+          </div>
+
+          <div class="hub-card reveal" data-delay="3">
+            <div class="hub-icon">C</div>
+            <h3>Controls and ITGCs</h3>
+            <p>Clearer explanations of control thinking, support evidence, and what makes a control discussion more defensible.</p>
+          </div>
+
+          <div class="hub-card reveal" data-delay="1">
+            <div class="hub-icon">D</div>
+            <h3>Documentation</h3>
+            <p>Workpaper quality, evidence narrative, and how to document thinking instead of only recording tasks.</p>
+          </div>
+
+          <div class="hub-card reveal" data-delay="2">
+            <div class="hub-icon">J</div>
+            <h3>Judgment</h3>
+            <p>How to move beyond completion and start answering deeper questions with more confidence and less borrowed language.</p>
+          </div>
+
+          <div class="hub-card reveal" data-delay="3">
+            <div class="hub-icon">G</div>
+            <h3>Growth</h3>
+            <p>Career lessons, mindset shifts, and practical thinking that help professionals become more trusted over time.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-title reveal">
+          <div class="eyebrow">How to use it well</div>
+          <h2>The best way to use the Audit Hub is not to finish it. It is to return to it intentionally.</h2>
+          <p>This is not meant to be rushed. It is meant to become a reference point you keep coming back to as your work gets deeper.</p>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card reveal" data-delay="1">
+            <div class="step-num">01</div>
+            <h3>Start with what you need now</h3>
+            <p>Do not try to consume everything at once. Begin with the area that connects most closely to your current work.</p>
+          </div>
+
+          <div class="step-card reveal" data-delay="2">
+            <div class="step-num">02</div>
+            <h3>Use it during real work</h3>
+            <p>The hub becomes most valuable when it shapes your next walkthrough, evidence request, workpaper, or review conversation.</p>
+          </div>
+
+          <div class="step-card reveal" data-delay="3">
+            <div class="step-num">03</div>
+            <h3>Let the ideas compound</h3>
+            <p>As the content connects over time, you stop memorising isolated points and start thinking with more structure and calm.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta reveal">
+          <div class="section-title">
+            <div class="eyebrow">Explore it properly</div>
+            <h2>If you want one place where the learning actually connects, start with the Audit Hub.</h2>
+          </div>
+          <p>
+            The hub is the central system behind the content. It brings everything into one place so the thinking becomes easier to revisit, apply, and build on.
+          </p>
+          <div class="nav-actions" style="justify-content:flex-start;">
+            <a class="btn primary" href="https://chinmayk.notion.site/Chinmay-s-Audit-Hub-2e7ca52f613980e1a8cdc351da65da24" target="_blank" rel="noopener noreferrer">Explore the Audit Hub</a>
+            <a class="btn" href="https://substack.com/@kchinmay22" target="_blank" rel="noopener noreferrer">Join Newsletter</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="padding:0 0 26px;">
+    <div class="container">
+      <div class="footer-card">
+        <div class="footer-brand">
+          <div class="brand-mark">CK</div>
+          <div class="footer-meta">
+            <strong>Clarity with Chinmay</strong>
+            <span>IT Audit · Cyber Audit · Risk-first thinking · Practical clarity for professionals</span>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="why.html">My WHY</a>
+          <a href="get-in-touch.html">Get in Touch</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="audit-hub.html" class="active">Audit Hub</a>
+          <a href="https://substack.com/@kchinmay22" target="_blank" rel="noopener noreferrer">Newsletter</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const menuBackdrop = document.getElementById('menuBackdrop');
+
+      function openMenu() {
+        mobileMenu.classList.add('open');
+        menuBackdrop.classList.add('show');
+        menuToggle.classList.add('active');
+        menuToggle.setAttribute('aria-expanded', 'true');
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMenu() {
+        mobileMenu.classList.remove('open');
+        menuBackdrop.classList.remove('show');
+        menuToggle.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      menuToggle.addEventListener('click', function () {
+        mobileMenu.classList.contains('open') ? closeMenu() : openMenu();
+      });
+
+      menuBackdrop.addEventListener('click', closeMenu);
+
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+      });
+
+      window.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeMenu();
+      });
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 860) closeMenu();
+      });
+
+      const revealEls = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.14, rootMargin: '0px 0px -6% 0px' });
+
+        revealEls.forEach(el => {
+          if (!el.classList.contains('in')) io.observe(el);
+        });
+      } else {
+        revealEls.forEach(el => el.classList.add('in'));
+      }
+    })();
+  </script>
+</body>
+</html>
